@@ -71,8 +71,8 @@
       tagName: 'li', // changes tag from div to li
       template: _.template($('#item-template').html()), 
       render: function(){
-        this.$el.html(this.template(this.model.toJSON()));
-        return this; // enable chained calls
+        this.$el.html(this.template(this.model.toJSON())); // renders the chat items
+        return this; 
       }
     });
 
@@ -87,16 +87,16 @@
       },
       events: {
         'keypress #new-chat': 'createChatOnEnter', // listens for keypress to create new chat item when hit Enter
-        'click .destroy': 'clear',
+        'click .destroy': 'clear' //listens for click of button.destroy
       },
       createChatOnEnter: function(e){
-        if ( e.which !== 13 || !this.input.val().trim() ) { // ENTER_KEY = 13
+        if ( e.which !== 13 || !this.input.val().trim() ) {
           return;
         }
         chatList.create(this.newAttributes());
         this.input.val(''); 
       },
-      addOne: function(chat){
+      addOne: function(chat){ 
         var view = new ChatView({model: chat});
         $('#chat-list').append(view.render().el);
       },
@@ -109,7 +109,7 @@
           chattext: this.input.val().trim()
         }
       },
-      clear: function(){
+      clear: function(){ // clears the list
           localStorage.clear();
           location.reload(); 
       }
