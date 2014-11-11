@@ -71,7 +71,7 @@
       tagName: 'li', // changes tag from div to li
       template: _.template($('#item-template').html()), 
       render: function(){
-        this.$el.html(this.template(this.model.toJSON())); // renders the chat items
+        this.$el.html(this.template(this.model.toJSON())); // call the template and passes the data string to the template
         return this; 
       }
     });
